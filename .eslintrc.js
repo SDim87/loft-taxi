@@ -15,7 +15,7 @@ module.exports = {
     amd: true,
     // node: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:import/react'],
+  extends: ['airbnb-base', 'plugin:react/recommended', 'plugin:import/react'],
   plugins: ['babel', 'import', 'react'],
   settings: {
     'import/resolver': {
@@ -35,7 +35,7 @@ module.exports = {
       },
     ],
     'template-curly-spacing' : 'off',
-    // 'linebreak-style': 'off', // Неправильно работает в Windows.
+    'linebreak-style': 'off', // Неправильно работает в Windows.
     'quotes': ['error', 'single'],
     'semi': ['error', 'never'],
     'no-var': 'error',
