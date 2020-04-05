@@ -13,7 +13,7 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-
+// webpack
 function importAll(el) {
   el.keys().forEach(el)
 }
