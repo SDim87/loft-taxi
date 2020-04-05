@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import Login from '../Login'
 import MapPage from '../MapPage'
 import Header from '../Header'
 import Profile from '../Profile'
 
-const App = () => {
-  const [activeMap, setActiveMap] = useState(null)
-  const [activeComponent, setActiveComponent] = useState()
+class App extends Component {
+  state = {
+    activeMap: false,
+    activeComponent: '',
+  }
 
-  const routing = () => {
-    switch (activeComponent) {
+  setActiveMap = (value) => {
+    this.setState({ activeMap: value })
+  }
+
+  setActiveComponent = (value) => {
+    this.setState({ activeComponent: value })
+  }
+
+  routing = () => {
+    switch (this.state.activeComponent) {
       case 'map':
         return <MapPage />
       case 'profile':
@@ -22,18 +32,21 @@ const App = () => {
     }
   }
 
-  return (
-    <>
-      {activeMap ? null : <Login setActiveMap={setActiveMap} />}
-      {activeMap ? (
-        <>
-          <Header setActiveComponent={setActiveComponent} />
-          <MapPage />
-        </>
-      ) : null}
-      {routing()}
-    </>
-  )
+  render() {
+    return (
+      <>
+        {this.state.activeMap ? null : <Login setActiveMap={this.setActiveMap} />}
+        {console.log(this.state.activeMap)}
+        {this.state.activeMap ? (
+          <>
+            <Header setActiveComponent={this.setActiveComponent} />
+            <MapPage />
+          </>
+        ) : null}
+        {this.routing()}
+      </>
+    )
+  }
 }
 
 export default App
