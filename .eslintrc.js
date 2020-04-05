@@ -104,7 +104,8 @@ module.exports = {
     'react/jsx-indent-props': ['error', 2],
     'react/display-name': 0,
     'react/prop-types': 'off',
-    // 'react/require-default-props': 'off', // airbnb использует уведомление об ошибке
-    // 'react/forbid-prop-types': 'off' // airbnb использует уведомление об ошибке
+    'react/require-default-props': 'off', // airbnb использует уведомление об ошибке
+    'react/forbid-prop-types': 'off', // airbnb использует уведомление об ошибке
+    'class-methods-use-this': ['error', { 'exceptMethods': ['render'] }]
   },
 }
