@@ -5,9 +5,16 @@ class Header extends Component {
     return (
       <section style={{ height: '60px' }}>
         <div className="">Logo</div>
-        <button onClick={() => this.props.setActiveComponent('map')}>Карта</button>
+        <button
+          onClick={() => {
+            this.props.setActiveMap(true)
+            // this.props.setActiveComponent('map')
+          }}
+        >
+          Карта
+        </button>
         <button onClick={() => this.props.setActiveComponent('profile')}>Профиль</button>
-        <button onClick={() => this.props.setActiveComponent('login')}>Войти</button>
+        <button onClick={() => this.props.setActiveMap(false)}>Войти</button>
       </section>
     )
   }

@@ -36,10 +36,9 @@ class App extends Component {
     return (
       <>
         {this.state.activeMap ? null : <Login setActiveMap={this.setActiveMap} />}
-        {console.log(this.state.activeMap)}
         {this.state.activeMap ? (
           <>
-            <Header setActiveComponent={this.setActiveComponent} />
+            <Header setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap}/>
             <MapPage />
           </>
         ) : null}
