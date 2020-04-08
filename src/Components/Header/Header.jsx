@@ -1,20 +1,38 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Header extends Component {
+  static propTypes = {
+    setActiveComponent: PropTypes.func,
+    setActiveMap: PropTypes.func,
+    obj: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }).isRequired,
+  }
+
+  static defaultProps = {
+    obj: {
+      name: 'Vasia',
+      lastName: 'Ivanov',
+    },
+  }
+
   render() {
     return (
       <section style={{ height: '60px' }}>
         <div className="">Logo</div>
+        {console.log(this.props.obj)}
+        <button onClick={() => this.props.setActiveComponent('map')}>Карта</button>
+        <button onClick={() => this.props.setActiveComponent('profile')}>Профиль</button>
         <button
           onClick={() => {
-            this.props.setActiveMap(true)
-            // this.props.setActiveComponent('map')
+            this.props.setActiveComponent('default')
+            this.props.setActiveMap(false)
           }}
         >
-          Карта
+          Войти
         </button>
-        <button onClick={() => this.props.setActiveComponent('profile')}>Профиль</button>
-        <button onClick={() => this.props.setActiveMap(false)}>Войти</button>
       </section>
     )
   }

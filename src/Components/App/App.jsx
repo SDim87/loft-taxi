@@ -8,6 +8,10 @@ class App extends Component {
   state = {
     activeMap: false,
     activeComponent: '',
+    obj: {
+      name: 'Dima',
+      lastName: 'Sorokin',
+    },
   }
 
   setActiveMap = (value) => {
@@ -24,23 +28,19 @@ class App extends Component {
         return <MapPage />
       case 'profile':
         return <Profile />
-      case 'login':
-        return <Login />
 
       default:
-        return null
+        return (
+          <Login setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
+        )
     }
   }
 
   render() {
     return (
       <>
-        {this.state.activeMap ? null : <Login setActiveMap={this.setActiveMap} />}
         {this.state.activeMap ? (
-          <>
-            <Header setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap}/>
-            <MapPage />
-          </>
+          <Header setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
         ) : null}
         {this.routing()}
       </>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ContextExample from '../ContextExample/ContextExample'
 
 class Login extends Component {
   render() {
@@ -17,11 +18,13 @@ class Login extends Component {
           <button
             onClick={(evt) => {
               evt.preventDefault()
+              this.props.setActiveComponent('map')
               this.props.setActiveMap(true)
             }}
           >
             Войти
           </button>
+          <ContextExample />
         </form>
       </article>
     )
