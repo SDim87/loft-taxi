@@ -20,7 +20,17 @@ class Header extends Component {
 
   render() {
     return (
-      <section style={{ height: '60px' }}>
+      <section
+        style={{
+          height: '60px',
+          position: 'fixed',
+          left: 0,
+          right: 0,
+          top: 0,
+          zIndex: 2,
+          backgroundColor: '#fff'
+        }}
+        >
         <div className="">Logo</div>
         {console.log(this.props.obj)}
         <button onClick={() => this.props.setActiveComponent('map')}>Карта</button>
