@@ -1,51 +1,46 @@
-import React, { Component } from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
+import { AuthContext } from '../AuthContext/AuthContext'
 
-class Header extends Component {
-  static propTypes = {
-    setActiveComponent: PropTypes.func,
-    setActiveMap: PropTypes.func,
-    obj: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-    }).isRequired,
-  }
+const Header = (props) => {
+  const { setActiveComponent, setActiveMap } = props
+  const obj = useContext(AuthContext)
 
-  static defaultProps = {
-    obj: {
-      name: 'Vasia',
-      lastName: 'Ivanov',
-    },
-  }
-
-  render() {
-    return (
-      <section
-        style={{
-          height: '60px',
-          position: 'fixed',
-          left: 0,
-          right: 0,
-          top: 0,
-          zIndex: 2,
-          backgroundColor: '#fff'
+  return (
+    <section
+      style={{
+        height: '60px',
+        position: 'fixed',
+        left: 0,
+        right: 0,
+        top: 0,
+        zIndex: 2,
+        backgroundColor: '#fff',
+      }}
+      >
+      <div className="">Logo</div>
+      <button onClick={() => setActiveComponent('map')}>Карта</button>
+      <button onClick={() => setActiveComponent('profile')}>Профиль</button>
+      <button
+        onClick={() => {
+          if (obj.objLogin.isLoggedIn) {
+            obj.objLogin.logout()
+            setActiveComponent('default')
+            setActiveMap(false)
+          } else {
+            obj.objLogin.login()
+          }
         }}
-        >
-        <div className="">Logo</div>
-        {console.log(this.props.obj)}
-        <button onClick={() => this.props.setActiveComponent('map')}>Карта</button>
-        <button onClick={() => this.props.setActiveComponent('profile')}>Профиль</button>
-        <button
-          onClick={() => {
-            this.props.setActiveComponent('default')
-            this.props.setActiveMap(false)
-          }}
-        >
-          Войти
-        </button>
-      </section>
-    )
-  }
+      >
+        {obj.objLogin.isLoggedIn ? 'Выйти' : 'Войти'}
+      </button>
+    </section>
+  )
+}
+
+Header.propTypes = {
+  setActiveComponent: PropTypes.func,
+  setActiveMap: PropTypes.func
 }
 
 export default Header

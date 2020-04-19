@@ -1,29 +1,15 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Login from '../Login'
 import MapPage from '../MapPage'
 import Header from '../Header'
 import Profile from '../Profile'
 
-class App extends Component {
-  state = {
-    activeMap: false,
-    activeComponent: '',
-    obj: {
-      name: 'Dima',
-      lastName: 'Sorokin',
-    },
-  }
+const App = () => {
+  const [activeMap, setActiveMap] = useState(false)
+  const [activeComponent, setActiveComponent] = useState('')
 
-  setActiveMap = (value) => {
-    this.setState({ activeMap: value })
-  }
-
-  setActiveComponent = (value) => {
-    this.setState({ activeComponent: value })
-  }
-
-  routing = () => {
-    switch (this.state.activeComponent) {
+  const routing = () => {
+    switch (activeComponent) {
       case 'map':
         return <MapPage />
       case 'profile':
@@ -31,21 +17,23 @@ class App extends Component {
 
       default:
         return (
-          <Login setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
+          <Login
+            setActiveComponent={setActiveComponent}
+            setActiveMap={setActiveMap}
+            // stateLogin={stateLogin}
+          />
         )
     }
   }
 
-  render() {
-    return (
-      <>
-        {this.state.activeMap ? (
-          <Header setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
-        ) : null}
-        {this.routing()}
-      </>
-    )
-  }
+  return (
+    <>
+      {activeMap ? (
+        <Header setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} />
+      ) : null}
+      {routing()}
+    </>
+  )
 }
 
 export default App

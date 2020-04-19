@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class RegPage extends Component {
-  render() {
-    return (
-      <h1>This Page Registration</h1>
-    )
-  }
+const RegPage = () => {
+  return <h1>This Page Registration</h1>
 }
 
 export default RegPage
