@@ -32,4 +32,4 @@ function importAll(el) {
   el.keys().forEach(el)
 }
 
-importAll(require.context('./', true, /\.(js|css)$/))
+importAll(require.context('./', true, /\^(?!test.js$).(js|css)$/))
