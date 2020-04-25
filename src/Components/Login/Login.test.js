@@ -4,6 +4,16 @@ describe('test to login', () => {
     pass: null,
   }
 
+  const objLogin = {
+    isLoggedIn: false,
+    login() {
+      this.isLoggedIn = true
+    },
+    logout() {
+      this.isLoggedIn = false
+    },
+  }
+
   beforeAll(() => {
     user.login = 'user'
     user.pass = 'user'
@@ -24,5 +34,12 @@ describe('test to login', () => {
 
   it('check pass user', () => {
     expect(user.pass).toBe('user')
+  })
+
+  describe('Login', () => {
+    it('login to sistem', () => {
+      objLogin.login()
+      expect(objLogin.isLoggedIn).toBe(true)
+    })
   })
 })
