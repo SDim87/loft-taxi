@@ -1,11 +1,18 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useContext } from 'react'
-import PropTypes, { object } from 'prop-types'
+import React, { useContext, useState } from 'react'
+import PropTypes from 'prop-types'
+// import { Link } from 'react-router-dom'
 import { AuthContext } from '../AuthContext/AuthContext'
+
+const user = {
+  login: 'user',
+  pass: 'user',
+}
+
 
 const Login = (props) => {
   const obj = useContext(AuthContext)
-  // console.log('Login -> stateLogin', stateLogin)
+  const [dateLogin, setDateLogin] = useState()
+  const [datePass, setDatePass] = useState()
 
   const { setActiveComponent, setActiveMap } = props
   return (
@@ -14,22 +21,37 @@ const Login = (props) => {
       <form action="#">
         <div className="">
           <label htmlFor="login">Имя пользователя*</label>
-          <input type="text" name="login" id="login" />
+          <input
+            type="text"
+            name="login"
+            id="login"
+            onChange={(evt) => setDateLogin(evt.target.value)}
+          />
         </div>
         <div className="">
           <label htmlFor="pass">Пароль*</label>
-          <input type="password" name="pass" id="pass" />
+          <input
+            type="password"
+            name="pass"
+            id="pass"
+            onChange={(evt) => setDatePass(evt.target.value)}
+          />
         </div>
         <button
           onClick={(evt) => {
             evt.preventDefault()
-            obj.objLogin.login()
-            setActiveComponent('map')
-            setActiveMap(true)
+            if (dateLogin === user.login && datePass === user.pass) {
+              obj.objLogin.login()
+              setActiveComponent('map')
+              setActiveMap(true)
+            }
           }}
         >
           Войти
         </button>
+        <p>
+          Новый пользователь? <span to="/registration">Зарегистрируйтесь</span>
+        </p>
       </form>
     </article>
   )

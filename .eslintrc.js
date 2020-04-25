@@ -13,11 +13,11 @@ module.exports = {
     es6: true,
     browser: true,
     amd: true,
-    jest: true,
+    "jest/globals": true,
     // node: true,
   },
-  extends: ['airbnb-base', 'plugin:react/recommended', 'plugin:import/react'],
-  plugins: ['babel', 'import', 'react'],
+  extends: ['airbnb-base', 'plugin:react/recommended', 'plugin:import/react', "plugin:jest/recommended"],
+  plugins: ['babel', 'import', 'react', 'jest'],
   settings: {
     'import/resolver': {
       node: {
