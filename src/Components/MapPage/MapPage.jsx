@@ -26,20 +26,27 @@ class MapPage extends Component {
   render() {
     return (
       <>
-        <div className="map" style={{ width: '100%', height: '100%', backgroundColor: '#eee' }}>
+        <div
+          className="map"
+          style={{
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#eee',
+            position: 'relative',
+          }}
+          >
           <h1>This Map</h1>
           <div
             className="mapContainer"
             ref={(el) => (this.mapContainer = el)}
             style={{
               position: 'absolute',
-              top: 0,
+              top: '60px',
               right: 0,
               left: 0,
               bottom: 0,
             }}
-          >
-          </div>
+          ></div>
         </div>
       </>
     )

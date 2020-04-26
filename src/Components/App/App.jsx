@@ -3,8 +3,10 @@ import Login from '../Login'
 import MapPage from '../MapPage'
 import Header from '../Header'
 import Profile from '../Profile'
+import { useStyles } from './styles'
 
 const App = () => {
+  const classes = useStyles()
   const [activeMap, setActiveMap] = useState(false)
   const [activeComponent, setActiveComponent] = useState('')
 
@@ -28,10 +30,12 @@ const App = () => {
 
   return (
     <>
-      {activeMap ? (
-        <Header setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} />
-      ) : null}
-      {routing()}
+      <div className={classes.App}>
+        {activeMap ? (
+          <Header setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} />
+        ) : null}
+        {routing()}
+      </div>
     </>
   )
 }
