@@ -22,6 +22,7 @@ export const useStyles = createUseStyles({
     }
   },
   label: {
-
+    fontSize: '15px',
+    color: `${colors.base4}`
   }
 })

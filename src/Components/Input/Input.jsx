@@ -17,6 +17,7 @@ const Input = (props) => {
         name={name}
         id={name}
         onChange={(evt) => funcOnChange(evt.target.value)}
+        autoComplete={'off'}
       />
     </div>
   )

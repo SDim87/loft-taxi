@@ -8,6 +8,12 @@ export const useStyles = createUseStyles({
     margin: [0, 'auto'],
     height: '100%'
   },
+  logo: {
+    position: 'absolute',
+    left: '17.95%',
+    top: '50%',
+    transform: ' translateY(-50%)'
+  },
   popup: {
     backgroundColor: `${colors.base0}`,
     minWidth: '500px',
@@ -20,7 +26,8 @@ export const useStyles = createUseStyles({
     transform: 'translateY(-50%)',
 
     '& h1': {
-      fontSize: '40px',
+      fontSize: '36px',
+      fontWeight: '700',
       marginBottom: '30px'
     }
   },

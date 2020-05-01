@@ -3,26 +3,16 @@ import ReactDOM from 'react-dom'
 import { Reset } from 'styled-reset'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App/App'
-import { AuthContext } from './AuthContext/AuthContext'
-
-const objLogin = {
-  isLoggedIn: false,
-  login() {
-    this.isLoggedIn = true
-  },
-  logout() {
-    this.isLoggedIn = false
-  },
-}
+import { AuthProvider } from './AuthContext/AuthContext'
 
 ReactDOM.render(
   <>
     <Reset />
-    <AuthContext.Provider value={{ objLogin }}>
+    <AuthProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </AuthContext.Provider>
+    </AuthProvider >
   </>,
   document.getElementById('root')
 )

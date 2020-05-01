@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
-// import { Link } from 'react-router-dom'
-// import { Input } from '@material-ui/core'
 import { AuthContext } from '../AuthContext/AuthContext'
 import { useStyles } from './styles'
 import Input from '../Input'
+import logo from '../../assets/img/logo.png'
 
 const user = {
   login: 'user',
@@ -13,7 +12,8 @@ const user = {
 
 const Login = (props) => {
   const classes = useStyles()
-  const obj = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
+
   const [dateLogin, setDateLogin] = useState()
   const [datePass, setDatePass] = useState()
 
@@ -22,7 +22,7 @@ const Login = (props) => {
   const onClickBtnLogin = (evt) => {
     evt.preventDefault()
     if (dateLogin === user.login && datePass === user.pass) {
-      obj.objLogin.login()
+      login()
       setActiveComponent('map')
       setActiveMap(true)
     }
@@ -30,7 +30,7 @@ const Login = (props) => {
 
   return (
     <article className={classes.login}>
-
+      <img className={classes.logo} src={logo} alt="Логотип"/>
       <div className={classes.popup}>
         <h1>Войти</h1>
         <p className={classes.newUser}>
@@ -43,12 +43,14 @@ const Login = (props) => {
               type={'text'}
               name={'login'}
               label={'Имя пользователя*'}
-            />
+              aria-label="login-input"
+              />
             <Input
               funcOnChange={setDatePass}
               type={'password'}
               name={'pass'}
               label={'Пароль*'}
+              aria-label="pass-input"
             />
           </div>
           <button onClick={onClickBtnLogin}>Войти</button>
