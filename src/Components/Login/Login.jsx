@@ -39,21 +39,21 @@ const Login = (props) => {
         <form action="#">
           <div className={classes.groupInput}>
             <Input
+              testId="input-login"
               funcOnChange={setDateLogin}
               type={'text'}
               name={'login'}
               label={'Имя пользователя*'}
-              aria-label="login-input"
               />
             <Input
+              testId="input-pass"
               funcOnChange={setDatePass}
               type={'password'}
               name={'pass'}
               label={'Пароль*'}
-              aria-label="pass-input"
             />
           </div>
-          <button onClick={onClickBtnLogin}>Войти</button>
+          <button onClick={onClickBtnLogin} data-testid="submit">Войти</button>
         </form>
       </div>
     </article>
