@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react'
 import Login from './Login'
 import { AuthProvider, AuthContext } from '../AuthContext/AuthContext'
 
-describe('test to login', () => {
+describe('test login', () => {
   const user = {
     login: 'user',
     pass: 'user',
@@ -13,25 +13,36 @@ describe('test to login', () => {
     const { isLoggedIn } = useContext(AuthContext)
 
     return (
-      <div data-testid="isLoggedIn-value">{isLoggedIn}</div>
+      <div data-testid="isLoggedIn">{isLoggedIn}</div>
     )
   }
 
-  it('check login fields', () => {
-    expect(user.login).toBe('user')
-    expect(user.pass).toBe('user')
-  })
+  it('check login and password', () => {
+    const setActiveComponent = jest.fn()
+    const setActiveMap = jest.fn()
+    const login = jest.fn()
 
-  it('check login user', () => {
-    const { getByTestId } = render(<AuthProvider><Login /><TestComponent/></AuthProvider>)
+    const { getByTestId } = render(
+      <AuthProvider>
+        <Login setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} login={login}/>
+        <TestComponent />
+      </AuthProvider>
+    )
+
     const inputLogin = getByTestId('input-login')
     const inputPass = getByTestId('input-pass')
     const btnSubmit = getByTestId('submit')
+    const isLoggedIn = getByTestId('isLoggedIn')
 
     fireEvent.change(inputLogin, { target: { value: user.login } })
     fireEvent.change(inputPass, { target: { value: user.pass } })
 
     fireEvent.click(btnSubmit)
-    expect(inputLogin).toBe('user')
+
+    // проверка на значения полей
+    expect(inputLogin.value).toBe('user')
+    expect(inputPass.value).toBe('user')
+    // проверка на login
+    expect(isLoggedIn).toBeTruthy()
   })
 })
