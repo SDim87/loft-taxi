@@ -1,34 +1,25 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { AuthContext } from '../AuthContext/AuthContext'
+// import { Link } from 'react-router-dom'
+// import { AuthContext } from '../AuthContext/AuthContext'
 import { useStyles } from './styles'
 import logoDark from '../../assets/img/logo-dark.png'
+import Button from '../Button'
 
 const Header = (props) => {
-  const { setActiveComponent, setActiveMap } = props
-  const { isLoggedIn, login, logout } = useContext(AuthContext)
+  // const { setActiveComponent, setActiveMap } = props
+  // const { isLoggedIn, login, logout } = useContext(AuthContext)
   const classes = useStyles()
 
   return (
     <section className={classes.header}>
       <div className={classes.container}>
-        <img src={logoDark} alt="Логотип"/>
-        <div className={classes.header_menu}>
-          <button onClick={() => setActiveComponent('map')}>Карта</button>
-          <button onClick={() => setActiveComponent('profile')}>Профиль</button>
-          <button
-            onClick={() => {
-              if (isLoggedIn) {
-                logout()
-                setActiveComponent('default')
-                setActiveMap(false)
-              } else {
-                login()
-              }
-            }}
-          >
-            {isLoggedIn ? 'Выйти' : 'Войти'}
-          </button>
+        <img src={logoDark} alt="Логотип" />
+        <div className={classes.nav}>
+          <Button tag={'link'} to="/map" text={'Карта'} />
+          <Button tag={'link'} to="/profile" text={'Профиль'} />
+          <Button tag={'link'} to="/" text={'Выйти'} />
         </div>
       </div>
     </section>
@@ -37,7 +28,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   setActiveComponent: PropTypes.func,
-  setActiveMap: PropTypes.func
+  setActiveMap: PropTypes.func,
 }
 
 export default Header

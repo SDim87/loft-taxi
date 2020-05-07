@@ -43,5 +43,8 @@ export const useStyles = createUseStyles({
     '& div:not(:last-child)': {
       marginBottom: '30px'
     }
+  },
+  btn__wrap: {
+    textAlign: 'end'
   }
 })

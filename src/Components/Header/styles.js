@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss'
+import { colors } from '../../styles/colors'
 
 export const useStyles = createUseStyles({
   header: {
@@ -8,7 +9,7 @@ export const useStyles = createUseStyles({
     right: 0,
     top: 0,
     zIndex: 2,
-    backgroundColor: '#fff',
+    backgroundColor: `${colors.base0}`,
   },
   container: {
     maxWidth: '1170px',
@@ -19,4 +20,9 @@ export const useStyles = createUseStyles({
     alignItems: 'center',
     height: '100%'
   },
+  nav: {
+    '& a:not(:last-child)': {
+      marginRight: '10px'
+    }
+  }
 })

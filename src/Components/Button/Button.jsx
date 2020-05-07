@@ -1,14 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useStyles } from './styles'
 
 const Button = (props) => {
-  const { text } = props
-  const classes = useStyles()
+  const { text, tag, to } = props
+  const classes = useStyles(props)
 
-  return (
-    <button className={classes.button}>
-      {text}
-    </button>
+  return tag === 'link' ? (
+    <Link className={classes.button} to={to}>{text}</Link>
+  ) : (
+    <button className={classes.button}>{text}</button>
   )
 }
 

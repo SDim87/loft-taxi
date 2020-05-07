@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
+import Header from '../Header'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0zZXRhZ256aTUxaG8ifQ.kd3Zw0dq9lwmO03qe9y1ew'
 
@@ -26,6 +27,7 @@ class MapPage extends Component {
   render() {
     return (
       <>
+        <Header/>
         <div
           className="map"
           style={{
@@ -35,7 +37,6 @@ class MapPage extends Component {
             position: 'relative',
           }}
           >
-          <h1>This Map</h1>
           <div
             className="mapContainer"
             ref={(el) => (this.mapContainer = el)}
