@@ -5,6 +5,7 @@ import MapPage from '../MapPage'
 // import Header from '../Header'
 import Profile from '../Profile'
 import { useStyles } from './styles'
+// import { Store } from '../../Redux/Store'
 
 const PageNotFound = () => {
   return (
@@ -16,6 +17,8 @@ const PageNotFound = () => {
 
 const App = () => {
   const classes = useStyles()
+
+  // Store.subscribe(() => localStorage.setItem('state', JSON.stringify(Store.getState())))
 
   return (
     <>

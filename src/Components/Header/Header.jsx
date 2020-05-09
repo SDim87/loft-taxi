@@ -6,20 +6,28 @@ import PropTypes from 'prop-types'
 import { useStyles } from './styles'
 import logoDark from '../../assets/img/logo-dark.png'
 import Button from '../Button'
+import actions from '../../Redux/Actions'
 
 const Header = (props) => {
   // const { setActiveComponent, setActiveMap } = props
   // const { isLoggedIn, login, logout } = useContext(AuthContext)
   const classes = useStyles()
+  const { changeAuthStatus } = actions
 
   return (
     <section className={classes.header}>
       <div className={classes.container}>
         <img src={logoDark} alt="Логотип" />
         <div className={classes.nav}>
-          <Button tag={'link'} to="/map" text={'Карта'} />
-          <Button tag={'link'} to="/profile" text={'Профиль'} />
-          <Button tag={'link'} to="/" text={'Выйти'} />
+          <Button tag={'link'} to="/map">
+            Карта
+          </Button>
+          <Button tag={'link'} to="/profile">
+            Профиль
+          </Button>
+          <Button tag={'link'} to="/" handlerClick={() => changeAuthStatus(false)}>
+            Выйти
+          </Button>
         </div>
       </div>
     </section>
