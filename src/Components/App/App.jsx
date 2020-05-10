@@ -1,21 +1,13 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Login from '../Login'
+import { connect } from 'react-redux'
+import Auth from '../Auth'
 import MapPage from '../MapPage'
-// import Header from '../Header'
 import Profile from '../Profile'
 import { useStyles } from './styles'
-// import { Store } from '../../Redux/Store'
+import PrivateRoute from '../PrivateRoute'
 
-const PageNotFound = () => {
-  return (
-    <div>
-      <h1 style={{ fontSize: '24px', color: '#fff', textAlign: 'center' }}>Страница не найдена</h1>
-    </div>
-  )
-}
-
-const App = () => {
+const App = ({ authStatus }) => {
   const classes = useStyles()
 
   // Store.subscribe(() => localStorage.setItem('state', JSON.stringify(Store.getState())))
@@ -23,16 +15,34 @@ const App = () => {
   return (
     <>
       <div className={classes.App}>
-        <Switch>
-          <Route path="/" component={Login} exact />
+        {authStatus ? (
+          <>
+            <Switch>
+              <PrivateRoute path="/map" components={<MapPage/>} />
+              <PrivateRoute path="/profile" components={<Profile/>} />
+            </Switch>
+            <Redirect to="/map" />
+          </>
+        ) : (
+          <>
+            <Route path="/" component={Auth}/>
+            <Redirect to="/" />
+          </>
+        )}
+        {/* <Switch>
+          <Route path="/" component={Auth} exact />
           <Route path="/map" component={MapPage} />
           <Route path="/profile" component={Profile} />
-          <Route path="*" component={PageNotFound} />
-          <Redirect to="/" />
-        </Switch>
+        </Switch> */}
       </div>
     </>
   )
 }
 
-export default App
+const mapStateToProps = ({ SystemData }) => {
+  return {
+    authStatus: SystemData.authStatus,
+  }
+}
+
+export default connect(mapStateToProps)(App)

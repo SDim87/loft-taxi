@@ -5,7 +5,7 @@ export const useStyles = createUseStyles({
   input: {
     backgroundColor: 'transparent',
     border: 'none',
-    borderBottom: `2px solid ${colors.base2}`,
+    borderBottom: `1px solid ${colors.base8}`,
     height: '30px',
     width: '100%',
     lineHeight: '30px',

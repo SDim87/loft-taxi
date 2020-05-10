@@ -2,18 +2,6 @@ import { createUseStyles } from 'react-jss'
 import { colors } from '../../styles/colors'
 
 export const useStyles = createUseStyles({
-  login: {
-    maxWidth: '1170px',
-    position: 'relative',
-    margin: [0, 'auto'],
-    height: '100%'
-  },
-  logo: {
-    position: 'absolute',
-    left: '17.95%',
-    top: '50%',
-    transform: ' translateY(-50%)'
-  },
   popup: {
     backgroundColor: `${colors.base0}`,
     minWidth: '500px',
@@ -35,7 +23,9 @@ export const useStyles = createUseStyles({
     marginBottom: '40px'
   },
   link: {
-    color: `${colors.blue}`
+    color: `${colors.blue}`,
+    cursor: 'pointer',
+    textDecoration: 'underline',
   },
   groupInput: {
     marginBottom: '40px',

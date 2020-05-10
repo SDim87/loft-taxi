@@ -11,6 +11,7 @@ export const useStyles = createUseStyles({
     lineHeight: (props) => (props.style === 'brand' ? '48px' : '32px'),
     color: colors.base6,
     backgroundColor: (props) => (props.style === 'brand' ? `${colors.yellow}` : `${colors.base7}`),
+    border: 'none',
     borderRadius: '5px',
     textDecoration: 'none',
     boxSizing: 'border-box',

@@ -46,5 +46,9 @@ export const useStyles = createUseStyles({
     '& > div:not(:last-child)': {
       marginBottom: '35px'
     }
+  },
+  profile__btn: {
+    textAlign: 'center',
+    marginTop: '20px',
   }
 })

@@ -6,3 +6,10 @@ export const changeAuthStatus = (payload) => {
     payload,
   }
 }
+
+export const changeActiveForm = (payload) => {
+  return {
+    type: Types.CHANGE_ACTIVE_FORM,
+    payload,
+  }
+}

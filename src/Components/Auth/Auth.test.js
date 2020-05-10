@@ -1,6 +1,6 @@
 // import React, { useContext } from 'react'
 // import { render, fireEvent } from '@testing-library/react'
-// import Login from './Login'
+// import Auth from './Auth'
 // import { AuthProvider, AuthContext } from '../AuthContext/AuthContext'
 
 // describe('test login', () => {
@@ -24,7 +24,7 @@
 
 //     const { getByTestId } = render(
 //       <AuthProvider>
-//         <Login setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} login={login}/>
+//         <Auth setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} login={login}/>
 //         <TestComponent />
 //       </AuthProvider>
 //     )

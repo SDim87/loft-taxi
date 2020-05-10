@@ -15,6 +15,8 @@ export const colors = {
   base6: '#000',
   /** f2f2f2 */
   base7: '#f2f2f2',
+  /** eaeaea */
+  base8: '#eaeaea',
   /** 1473e6 */
   blue: '#1473e6',
   /** ffc617 */
