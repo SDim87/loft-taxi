@@ -1,13 +1,13 @@
 export const data = [
   {
-    type: 'text',
-    name: 'login',
+    type: 'email',
+    name: 'email',
     label: 'Имя пользователя*',
     testId: 'input-login',
   },
   {
     type: 'password',
-    name: 'pass',
+    name: 'password',
     label: 'Пароль*',
     testId: 'input-pass',
   },

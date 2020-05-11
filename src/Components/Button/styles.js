@@ -10,12 +10,17 @@ export const useStyles = createUseStyles({
     fontWeight: (props) => (props.style === 'brand' ? '700' : '400'),
     lineHeight: (props) => (props.style === 'brand' ? '48px' : '32px'),
     color: colors.base6,
-    backgroundColor: (props) => (props.style === 'brand' ? `${colors.yellow}` : `${colors.base7}`),
+    backgroundColor: (props) => (props.style === 'brand' ? `${colors.yellow}` : `${colors.base0}`),
     border: 'none',
     borderRadius: '5px',
     textDecoration: 'none',
     boxSizing: 'border-box',
     textAlign: 'center',
     transition: 'all 0.2s ease-in-out',
+    cursor: 'pointer',
+
+    '&:hover': {
+      backgroundColor: (props) => (props.style === 'brand' ? `${colors.base4}` : `${colors.base7}`)
+    }
   }
 })

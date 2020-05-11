@@ -1,18 +1,15 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-// import { Link } from 'react-router-dom'
-// import { AuthContext } from '../AuthContext/AuthContext'
+import { connect } from 'react-redux'
 import { useStyles } from './styles'
 import logoDark from '../../assets/img/logo-dark.png'
 import Button from '../Button'
-import actions from '../../Redux/Actions'
+import { logout } from '../../Redux/Actions/Actions'
 
-const Header = (props) => {
+const Header = ({ changeAuthStatus, logout }) => {
   // const { setActiveComponent, setActiveMap } = props
   // const { isLoggedIn, login, logout } = useContext(AuthContext)
   const classes = useStyles()
-  const { changeAuthStatus } = actions
 
   return (
     <section className={classes.header}>
@@ -25,7 +22,7 @@ const Header = (props) => {
           <Button tag={'link'} to="/profile">
             Профиль
           </Button>
-          <Button tag={'link'} to="/" handlerClick={() => changeAuthStatus(false)}>
+          <Button tag={'link'} to="/" handlerClick={() => logout()}>
             Выйти
           </Button>
         </div>
@@ -39,4 +36,6 @@ Header.propTypes = {
   setActiveMap: PropTypes.func,
 }
 
-export default Header
+const mapDispathToProps = { logout }
+
+export default connect(null, mapDispathToProps)(Header)

@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useStyles } from './styles'
 import Input from '../Input'
-import actions from '../../Redux/Actions'
+import { changeAuthStatus, changeActiveForm, login } from '../../Redux/Actions/Actions'
 import Button from '../Button'
 import { data } from './data'
 
-const Authentication = ({ isActiveForm }) => {
+const Authentication = ({
+  isActiveForm, changeAuthStatus, changeActiveForm, login
+}) => {
   const classes = useStyles()
-  const { changeAuthStatus, changeActiveForm } = actions
   const [valueInput, setValueInput] = useState({})
 
   const generateInputs = (arr) => {
@@ -20,6 +21,7 @@ const Authentication = ({ isActiveForm }) => {
           type={el.type}
           name={el.name}
           label={el.label}
+          required={'required'}
           valueInput={valueInput}
           setValueInput={setValueInput}
         />
@@ -43,7 +45,9 @@ const Authentication = ({ isActiveForm }) => {
             tag="link"
             style={'brand'}
             to={'/map'}
-            handlerClick={() => changeAuthStatus(true)}
+            handlerClick={() => {
+              login(valueInput)
+            }}
             data-testid="submit"
           >
             Войти
@@ -60,4 +64,6 @@ const mapStateToProps = ({ SystemData }) => {
   }
 }
 
-export default connect(mapStateToProps)(Authentication)
+const mapDispatchToProps = { changeAuthStatus, changeActiveForm, login }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Authentication)

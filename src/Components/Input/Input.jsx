@@ -4,7 +4,7 @@ import { useStyles } from './styles'
 const Input = (props) => {
   const classes = useStyles()
   const {
-    type, name, label, testId, valueInput, setValueInput
+    type, name, label, testId, required, valueInput, setValueInput
   } = props
 
   return (
@@ -18,6 +18,7 @@ const Input = (props) => {
         type={type}
         name={name}
         id={name}
+        required={required}
         autoComplete={'off'}
         value={valueInput[name] ? valueInput[name] : ''}
         onChange={(evt) => setValueInput({

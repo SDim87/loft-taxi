@@ -1,23 +1,62 @@
 /* eslint-disable no-param-reassign */
-export const CHANGE_AUTH_STATUS = 'CHANGE_AUTH_STATUS'
-export const CHANGE_ACTIVE_FORM = 'CHANGE_ACTIVE_FORM'
+import {
+  changeAuthStatus,
+  changeActiveForm,
+  registrationData,
+  fetchToken,
+  loginData,
+  logout,
+  changeCardData,
+  fetchCardData
+} from '../Actions/Actions'
 
 const initialState = {
   authStatus: false,
-  isActiveForm: true
+  isActiveForm: true,
+  registration: {},
+  login: {},
+  cardData: {},
+  card: {}
 }
 
 export const SystemData = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_AUTH_STATUS:
+    case changeAuthStatus.toString():
       return state = {
         ...state,
         authStatus: action.payload
       }
-    case CHANGE_ACTIVE_FORM:
+    case changeActiveForm.toString():
       return state = {
         ...state,
         isActiveForm: action.payload
+      }
+    case registrationData.toString():
+      return state = {
+        ...state,
+        registration: action.payload
+      }
+    case loginData.toString():
+      return state = {
+        ...state,
+        login: action.payload
+      }
+    case fetchToken.toString():
+      return state = {
+        ...state,
+        tokenUser: action.payload
+      }
+    case logout.toString():
+      return state = initialState
+    case changeCardData.toString():
+      return state = {
+        ...state,
+        cardData: { ...action.payload }
+      }
+    case fetchCardData.toString():
+      return state = {
+        ...state,
+        card: action.payload
       }
 
     default:

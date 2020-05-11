@@ -2,13 +2,13 @@ export const data = [
   [
     {
       type: 'text',
-      name: 'number_card',
+      name: 'cardNumber',
       label: 'Номер карты:',
       testId: 'number_card',
     },
     {
       type: 'text',
-      name: 'date_card',
+      name: 'expiryDate',
       label: 'Срок действия:',
       testId: 'date_card',
     },
@@ -16,13 +16,13 @@ export const data = [
   [
     {
       type: 'text',
-      name: 'name_card',
+      name: 'cardName',
       label: 'Имя владельца:',
       testId: 'name_card',
     },
     {
       type: 'password',
-      name: 'key_card',
+      name: 'cvc',
       label: 'CVC:',
       testId: 'key_card',
     },

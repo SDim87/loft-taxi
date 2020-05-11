@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useStyles } from './styles'
 import Input from '../Input'
-import actions from '../../Redux/Actions'
+import { changeAuthStatus, changeActiveForm, registration } from '../../Redux/Actions/Actions'
 import Button from '../Button'
 import { data } from './data'
 
-const Registration = ({ isActiveForm }) => {
+const Registration = ({
+  isActiveForm,
+  changeAuthStatus,
+  changeActiveForm,
+  registration,
+  isRegistration,
+  authStatus
+}) => {
   const classes = useStyles()
-  const { changeAuthStatus, changeActiveForm } = actions
   const [valueInput, setValueInput] = useState({})
+  // console.log('Registration -> valueInput', valueInput)
+
+  useEffect(() => {
+    if (isRegistration) {
+      changeAuthStatus(!authStatus)
+    }
+  }, [isRegistration])
 
   const generateInputs = (arr) => {
     return arr.map((el, i) => {
@@ -20,6 +33,7 @@ const Registration = ({ isActiveForm }) => {
           type={el.type}
           name={el.name}
           label={el.label}
+          required={'required'}
           valueInput={valueInput}
           setValueInput={setValueInput}
         />
@@ -43,7 +57,9 @@ const Registration = ({ isActiveForm }) => {
             tag="link"
             style={'brand'}
             to={'/map'}
-            handlerClick={() => changeAuthStatus(true)}
+            handlerClick={() => {
+              registration(valueInput)
+            }}
             data-testid="submit"
           >
             Зарегистрироваться
@@ -56,8 +72,12 @@ const Registration = ({ isActiveForm }) => {
 
 const mapStateToProps = ({ SystemData }) => {
   return {
-    isActiveForm: SystemData.isActiveForm
+    isRegistration: SystemData.registration.success,
+    isActiveForm: SystemData.isActiveForm,
+    authStatus: SystemData.authStatus,
   }
 }
 
-export default connect(mapStateToProps)(Registration)
+const mapDispatchToProps = { changeAuthStatus, changeActiveForm, registration }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration)

@@ -6,6 +6,7 @@ import MapPage from '../MapPage'
 import Profile from '../Profile'
 import { useStyles } from './styles'
 import PrivateRoute from '../PrivateRoute'
+import Header from '../Header'
 
 const App = ({ authStatus }) => {
   const classes = useStyles()
@@ -17,6 +18,7 @@ const App = ({ authStatus }) => {
       <div className={classes.App}>
         {authStatus ? (
           <>
+            <Header/>
             <Switch>
               <PrivateRoute path="/map" components={<MapPage/>} />
               <PrivateRoute path="/profile" components={<Profile/>} />

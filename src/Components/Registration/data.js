@@ -7,19 +7,19 @@ export const data = [
   },
   {
     type: 'text',
-    name: 'firstName',
+    name: 'name',
     label: 'Имя*',
     testId: 'input-first-name',
   },
   {
     type: 'text',
-    name: 'lastName',
+    name: 'surname',
     label: 'Фамилия*',
     testId: 'input-last-name',
   },
   {
     type: 'password',
-    name: 'pass',
+    name: 'password',
     label: 'Пароль*',
     testId: 'input-pass',
   },

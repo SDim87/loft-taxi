@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl'
-import Header from '../Header'
+// import Header from '../Header'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0zZXRhZ256aTUxaG8ifQ.kd3Zw0dq9lwmO03qe9y1ew'
 
@@ -27,7 +27,7 @@ class MapPage extends Component {
   render() {
     return (
       <>
-        <Header/>
+        {/* <Header/> */}
         <div
           className="map"
           style={{
