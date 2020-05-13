@@ -11,8 +11,6 @@ import Header from '../Header'
 const App = ({ authStatus }) => {
   const classes = useStyles()
 
-  // Store.subscribe(() => localStorage.setItem('state', JSON.stringify(Store.getState())))
-
   return (
     <>
       <div className={classes.App}>
@@ -31,11 +29,6 @@ const App = ({ authStatus }) => {
             <Redirect to="/" />
           </>
         )}
-        {/* <Switch>
-          <Route path="/" component={Auth} exact />
-          <Route path="/map" component={MapPage} />
-          <Route path="/profile" component={Profile} />
-        </Switch> */}
       </div>
     </>
   )

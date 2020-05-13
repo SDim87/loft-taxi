@@ -28,6 +28,7 @@ export const middleware = (store) => (next) => (action) => {
         .then((data) => {
           if (data.success) {
             store.dispatch(fetchToken(data.token))
+            store.dispatch(changeAuthStatus(!authStatus))
           } else {
             store.dispatch(registrationData(data))
           }
