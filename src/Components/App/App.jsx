@@ -14,21 +14,13 @@ const App = ({ authStatus }) => {
   return (
     <>
       <div className={classes.App}>
-        {authStatus ? (
-          <>
-            <Header/>
-            <Switch>
-              <PrivateRoute path="/map" components={<MapPage/>} />
-              <PrivateRoute path="/profile" components={<Profile/>} />
-            </Switch>
-            <Redirect to="/map" />
-          </>
-        ) : (
-          <>
-            <Route path="/" component={Auth}/>
-            <Redirect to="/" />
-          </>
-        )}
+        {authStatus ? <Header/> : null}
+        <Switch>
+          {!authStatus && <Route path="/" component={Auth}/>}
+          <PrivateRoute path="/map" components={<MapPage/>} />
+          <PrivateRoute path="/profile" components={<Profile/>} />
+          <Redirect to="/map" />
+        </Switch>
       </div>
     </>
   )
