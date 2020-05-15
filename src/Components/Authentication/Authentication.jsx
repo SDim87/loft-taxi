@@ -42,13 +42,12 @@ const Authentication = ({
         <div className={classes.groupInput}>{generateInputs(data)}</div>
         <div className={classes.btn__wrap}>
           <Button
-            tag="link"
             style={'brand'}
-            to={'/map'}
-            handlerClick={() => {
+            handlerClick={(evt) => {
+              evt.preventDefault()
               login(valueInput)
             }}
-            data-testid="submit"
+            testId="btn-login"
           >
             Войти
           </Button>

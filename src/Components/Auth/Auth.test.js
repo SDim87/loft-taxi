@@ -1,9 +1,10 @@
+/* eslint-disable jest/no-commented-out-tests */
 // import React, { useContext } from 'react'
 // import { render, fireEvent } from '@testing-library/react'
 // import Auth from './Auth'
 // import { AuthProvider, AuthContext } from '../AuthContext/AuthContext'
 
-// describe('test login', () => {
+//   describe('test login', () => {
 //   const user = {
 //     login: 'user',
 //     pass: 'user',

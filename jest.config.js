@@ -7,4 +7,7 @@ module.exports = {
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$',
   moduleFileExtensions: ['js', 'jsx'],
+  setupFilesAfterEnv: [
+    '<rootDir>/jest.setup.js'
+  ],
 }
