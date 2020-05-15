@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 // import { BrowserRouter } from 'react-router-dom'
 // import Auth from '../Auth'
 import { Provider } from 'react-redux'
@@ -15,5 +15,22 @@ describe('Authentication: ', () => {
     )
 
     expect(queryAllByText('Войти')).toBeTruthy()
+  })
+
+  it('check authentication', () => {
+    let { authStatus } = Store.getState()
+    const { getByTestId } = render(
+      <Provider store={Store}>
+        <Authentication/>
+        <button data-testid="submit" onClick={() => authStatus = true}></button>
+      </Provider>
+    )
+
+    console.log(authStatus)
+
+    const btnSubmit = getByTestId('submit')
+    fireEvent.click(btnSubmit)
+
+    expect(authStatus).toBeTruthy()
   })
 })
