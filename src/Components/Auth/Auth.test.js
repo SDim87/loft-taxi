@@ -1,49 +1,34 @@
-/* eslint-disable jest/no-commented-out-tests */
-// import React, { useContext } from 'react'
-// import { render, fireEvent } from '@testing-library/react'
-// import Auth from './Auth'
-// import { AuthProvider, AuthContext } from '../AuthContext/AuthContext'
+import React from 'react'
+import { render, fireEvent } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { Store } from '../../Redux/Store'
+import Auth from './Auth'
 
-//   describe('test login', () => {
-//   const user = {
-//     login: 'user',
-//     pass: 'user',
-//   }
+describe('Auth: ', () => {
+  it('route testing', () => {
+    const { container, getByText } = render(
+      <BrowserRouter>
+        <Provider store={Store}>
+          <Auth/>
+        </Provider>
+      </BrowserRouter>
+    )
 
-//   const TestComponent = () => {
-//     const { isLoggedIn } = useContext(AuthContext)
+    expect(container.innerHTML).toMatch('Войти')
 
-//     return (
-//       <div data-testid="isLoggedIn">{isLoggedIn}</div>
-//     )
-//   }
+    const regLink = getByText('Зарегистрируйтесь')
+    expect(regLink).toBeTruthy()
 
-//   it('check login and password', () => {
-//     const setActiveComponent = jest.fn()
-//     const setActiveMap = jest.fn()
-//     const login = jest.fn()
+    fireEvent.click(regLink)
 
-//     const { getByTestId } = render(
-//       <AuthProvider>
-//         <Auth setActiveComponent={setActiveComponent} setActiveMap={setActiveMap} login={login}/>
-//         <TestComponent />
-//       </AuthProvider>
-//     )
+    expect(container.innerHTML).toMatch('Зарегистрироваться')
 
-//     const inputLogin = getByTestId('input-login')
-//     const inputPass = getByTestId('input-pass')
-//     const btnSubmit = getByTestId('submit')
-//     const isLoggedIn = getByTestId('isLoggedIn')
+    const authLink = getByText('Войти')
+    expect(authLink).toBeTruthy()
 
-//     fireEvent.change(inputLogin, { target: { value: user.login } })
-//     fireEvent.change(inputPass, { target: { value: user.pass } })
+    fireEvent.click(authLink)
 
-//     fireEvent.click(btnSubmit)
-
-//     // проверка на значения полей
-//     expect(inputLogin.value).toBe('user')
-//     expect(inputPass.value).toBe('user')
-//     // проверка на login
-//     expect(isLoggedIn).toBeTruthy()
-//   })
-// })
+    expect(container.innerHTML).toMatch('Войти')
+  })
+})
