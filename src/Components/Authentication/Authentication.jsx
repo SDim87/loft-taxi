@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { useStyles } from './styles'
 import Input from '../Input'
 import { changeAuthStatus, changeActiveForm, login } from '../../Redux/Actions/Actions'
@@ -64,5 +65,12 @@ const mapStateToProps = ({ SystemData }) => {
 }
 
 const mapDispatchToProps = { changeAuthStatus, changeActiveForm, login }
+
+Authentication.propTypes = {
+  isActiveForm: PropTypes.bool,
+  changeAuthStatus: PropTypes.func,
+  changeActiveForm: PropTypes.func,
+  login: PropTypes.func,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication)

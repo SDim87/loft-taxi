@@ -17,3 +17,8 @@ export const changeCard = createAction('CHANGE_CARD')
 export const changeCardData = createAction('SAVE_CARD_DATA')
 export const fetchCard = createAction('FETCH_CARD')
 export const fetchCardData = createAction('FETCH_CARD_DATA')
+
+export const fetchAddressList = createAction('FETCH_ADDRESS_LIST')
+export const fetchAddressListData = createAction('FETCH_ADDRESS_LIST_DATA')
+export const fetchRoute = createAction('FETCH_ROUTE')
+export const fetchRouteData = createAction('FETCH_ROUTE_DATA')

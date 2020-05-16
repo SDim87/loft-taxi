@@ -8,7 +8,11 @@ import {
   changeCard,
   changeCardData,
   fetchCard,
-  fetchCardData
+  fetchCardData,
+  fetchAddressList,
+  fetchAddressListData,
+  fetchRoute,
+  fetchRouteData
 } from './Actions/Actions'
 
 
@@ -75,6 +79,24 @@ export const middleware = (store) => (next) => (action) => {
       }).then((res) => res.json())
         .then((data) => {
           store.dispatch(fetchCardData(data))
+        })
+      break
+    case fetchAddressList.toString():
+      fetch('https://loft-taxi.glitch.me/addressList', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }).then((res) => res.json())
+        .then((data) => {
+          store.dispatch(fetchAddressListData(data.addresses))
+        })
+      break
+    case fetchRoute.toString():
+      fetch(`https://loft-taxi.glitch.me/route?address1=${action.payload.address1}&address2=${action.payload.address2}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }).then((res) => res.json())
+        .then((data) => {
+          store.dispatch(fetchRouteData(data))
         })
       break
 
