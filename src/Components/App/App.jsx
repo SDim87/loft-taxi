@@ -1,51 +1,42 @@
-import React, { Component } from 'react'
-import Login from '../Login'
+import React from 'react'
+import {
+  Switch, Route, Redirect, withRouter
+} from 'react-router-dom'
+import { connect } from 'react-redux'
+import Auth from '../Auth'
 import MapPage from '../MapPage'
-import Header from '../Header'
 import Profile from '../Profile'
+import { useStyles } from './styles'
+import PrivateRoute from '../PrivateRoute'
+import Header from '../Header'
 
-class App extends Component {
-  state = {
-    activeMap: false,
-    activeComponent: '',
-    obj: {
-      name: 'Dima',
-      lastName: 'Sorokin',
-    },
-  }
+// eslint-disable-next-line no-unused-vars
+const LocationDisplay = withRouter(({ location }) => (
+  <div data-testid="location-display">{location.pathname}</div>
+))
 
-  setActiveMap = (value) => {
-    this.setState({ activeMap: value })
-  }
+const App = ({ authStatus }) => {
+  const classes = useStyles()
 
-  setActiveComponent = (value) => {
-    this.setState({ activeComponent: value })
-  }
+  return (
+    <>
+      <div className={classes.App}>
+        {authStatus ? <Header/> : null}
+        <Switch>
+          {!authStatus && <Route path="/" component={Auth}/>}
+          <PrivateRoute path="/map" components={<MapPage/>} />
+          <PrivateRoute path="/profile" components={<Profile/>} />
+          <Redirect to="/map" />
+        </Switch>
+      </div>
+    </>
+  )
+}
 
-  routing = () => {
-    switch (this.state.activeComponent) {
-      case 'map':
-        return <MapPage />
-      case 'profile':
-        return <Profile />
-
-      default:
-        return (
-          <Login setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
-        )
-    }
-  }
-
-  render() {
-    return (
-      <>
-        {this.state.activeMap ? (
-          <Header setActiveComponent={this.setActiveComponent} setActiveMap={this.setActiveMap} />
-        ) : null}
-        {this.routing()}
-      </>
-    )
+const mapStateToProps = ({ SystemData }) => {
+  return {
+    authStatus: SystemData.authStatus,
   }
 }
 
-export default App
+export default connect(mapStateToProps)(App)

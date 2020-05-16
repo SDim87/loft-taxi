@@ -6,12 +6,21 @@
 
 ```bash
 # установка модулей
-yarn
+npm i
 
 # веб сервер с автоперезагрузкой по адресу localhost:8080
-yarn dev
+npm run dev
 
 # сборка проекта в директорию dist
-yarn build
+npm run build
+
+# запуск тестов
+npm run test
+
+# проверка кода eslint
+npm run lint
+
+# проверка кода и исправление eslint
+npm run lint:write
 
 ```
