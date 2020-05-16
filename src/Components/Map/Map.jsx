@@ -1,63 +1,58 @@
-import React, { Component } from 'react'
+import React from 'react'
 import mapboxgl from 'mapbox-gl'
-// import Header from '../Header'
 import { connect } from 'react-redux'
-import { fetchAddressList } from '../../Redux/Actions/Actions'
+import { drawRoute } from './DrawRoute'
 
+const ACCESS_TOKEN = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0zZXRhZ256aTUxaG8ifQ.kd3Zw0dq9lwmO03qe9y1ew'
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0zZXRhZ256aTUxaG8ifQ.kd3Zw0dq9lwmO03qe9y1ew'
+const styles = {
+  position: 'absolute',
+  top: '60px',
+  left: 0,
+  right: 0,
+  bottom: 0,
+}
 
-class Map extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      lng: 30.2656505,
-      lat: 59.8029127,
-      zoom: 10,
-    }
-  }
+class Map extends React.Component {
+  map = null;
+
+  mapContainer = React.createRef();
 
   componentDidMount() {
-    // eslint-disable-next-line no-unused-vars
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer.current,
       style: 'mapbox://styles/mapbox/light-v10',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
+      accessToken: ACCESS_TOKEN,
+      zoom: 10,
+      center: [30.27, 60]
     })
+  }
 
-    // this.props.fetchAddressList()
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.map.getLayer('route')) {
+      this.map.removeLayer('route')
+      this.map.removeSource('route')
+    }
+    drawRoute(this.map, this.props.route)
+  }
+
+  componentWillUnmount() {
+    this.map.remove()
   }
 
   render() {
     return (
-      <>
-        <div
-          className="map"
-          style={{
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: '#eee',
-            position: 'relative',
-          }}
-          >
-          <div
-            className="mapContainer"
-            ref={(el) => (this.mapContainer = el)}
-            style={{
-              position: 'absolute',
-              top: '60px',
-              right: 0,
-              left: 0,
-              bottom: 0,
-            }}
-          ></div>
-        </div>
-      </>
+      <div id="page">
+        <div id="mapBox" style={styles} ref={this.mapContainer}></div>
+      </div>
     )
   }
 }
 
-const mapDispatchToProps = { fetchAddressList }
+const mapStateToProps = ({ MapData }) => {
+  return {
+    route: MapData.routeAddresses
+  }
+}
 
-export default connect(null, mapDispatchToProps)(Map)
+export default connect(mapStateToProps)(Map)

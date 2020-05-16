@@ -1,31 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Grid,
-  Paper,
-  FormControl,
-  Select,
-  MenuItem,
-  InputLabel,
-  Button
+  Grid, Paper, FormControl, Select, MenuItem, InputLabel, Button
 } from '@material-ui/core'
 import { connect } from 'react-redux'
-import { fetchRoute } from '../../Redux/Actions/Actions'
+import { fetchRoute, fetchAddressList } from '../../Redux/Actions/Actions'
 import useStyles from './styles'
 
-
-const OrderForm = ({ addressList, fetchRoute }) => {
+const OrderForm = ({ addressList, fetchRoute, fetchAddressList }) => {
   const classes = useStyles()
   const [from, setFrom] = useState('')
   const [where, setWhere] = useState('')
-  console.log('OrderForm -> where', where)
-
-  const [fromList, setFromList] = useState(addressList)
-  const [whereList, setWhereList] = useState(addressList)
 
   useEffect(() => {
-
-  }, [])
-
+    fetchAddressList()
+  }, [fetchAddressList])
 
   let isDisabled = true
 
@@ -40,7 +28,6 @@ const OrderForm = ({ addressList, fetchRoute }) => {
 
     newAddressList.splice(idx, 1)
 
-    setWhereList(newAddressList)
     setFrom(address)
   }
 
@@ -51,7 +38,6 @@ const OrderForm = ({ addressList, fetchRoute }) => {
 
     newAddressList.splice(idx, 1)
 
-    setFromList(newAddressList)
     setWhere(el.target.value)
   }
 
@@ -61,6 +47,16 @@ const OrderForm = ({ addressList, fetchRoute }) => {
     if (from && where) {
       fetchRoute({ address1: from, address2: where })
     }
+  }
+
+  const renderOptions = (arr) => {
+    return arr.map((el) => {
+      return (
+        <MenuItem key={el} value={el}>
+          {el}
+        </MenuItem>
+      )
+    })
   }
 
   return (
@@ -76,13 +72,7 @@ const OrderForm = ({ addressList, fetchRoute }) => {
                 'data-testid': 'fromInput',
               }}
             >
-              {fromList.map((address) => {
-                return (
-                  <MenuItem key={address} value={address}>
-                    {address}
-                  </MenuItem>
-                )
-              })}
+              {addressList.length > 0 ? renderOptions(addressList) : null}
             </Select>
           </FormControl>
         </Grid>
@@ -96,13 +86,7 @@ const OrderForm = ({ addressList, fetchRoute }) => {
                 'data-testid': 'whereInput',
               }}
             >
-              {whereList.map((address) => {
-                return (
-                  <MenuItem key={address} value={address}>
-                    {address}
-                  </MenuItem>
-                )
-              })}
+              {addressList.length > 0 ? renderOptions(addressList) : null}
             </Select>
           </FormControl>
         </Grid>
@@ -130,6 +114,6 @@ const mapStateToProps = ({ MapData }) => {
   }
 }
 
-const mapDispatchToProps = { fetchRoute }
+const mapDispatchToProps = { fetchRoute, fetchAddressList }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)

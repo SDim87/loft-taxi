@@ -1,5 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { fetchAddressListData, fetchRouteData, logout } from '../Actions/Actions'
+import {
+  fetchAddressListData,
+  fetchRouteData,
+  logout,
+} from '../Actions/Actions'
 
 const initialState = {
   addressList: [],
