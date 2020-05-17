@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
 import {
-  fetchAddressListData,
-  fetchRouteData,
+  fetchAddressListSuccess,
+  fetchAddressListError,
+  fetchRouteSuccess,
+  fetchRouteError,
   logout,
 } from '../Actions/Actions'
 
@@ -12,15 +14,25 @@ const initialState = {
 
 export const MapData = (state = initialState, action) => {
   switch (action.type) {
-    case fetchAddressListData.toString():
+    case fetchAddressListSuccess.toString():
       return state = {
         ...state,
         addressList: action.payload
       }
-    case fetchRouteData.toString():
+    case fetchAddressListError.toString():
+      return state = {
+        ...state,
+        addressList: { error: action.payload }
+      }
+    case fetchRouteSuccess.toString():
       return state = {
         ...state,
         routeAddresses: action.payload
+      }
+    case fetchRouteError.toString():
+      return state = {
+        ...state,
+        routeAddresses: { error: action.payload }
       }
     case logout.toString():
       return state = initialState

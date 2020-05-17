@@ -8,6 +8,7 @@ import Registration from '../Registration'
 const Auth = ({ isActiveForm }) => {
   const classes = useStyles()
 
+
   return (
     <>
       <article className={classes.login}>

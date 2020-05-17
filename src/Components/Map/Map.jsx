@@ -7,7 +7,7 @@ const ACCESS_TOKEN = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0
 
 const styles = {
   position: 'absolute',
-  top: '60px',
+  top: 0,
   left: 0,
   right: 0,
   bottom: 0,
@@ -21,7 +21,7 @@ class Map extends React.Component {
   componentDidMount() {
     this.map = new mapboxgl.Map({
       container: this.mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v10',
+      style: 'mapbox://styles/mapbox/dark-v10',
       accessToken: ACCESS_TOKEN,
       zoom: 10,
       center: [30.27, 60]
@@ -42,9 +42,7 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div id="page">
-        <div id="mapBox" style={styles} ref={this.mapContainer}></div>
-      </div>
+      <div id="mapBox" style={styles} ref={this.mapContainer}></div>
     )
   }
 }

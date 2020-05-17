@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import Map from '../Map'
-import OrderAddress from '../OrderAddress'
+import OrderForm from '../OrderForm'
+import { fetchCard } from '../../Redux/Actions/Actions'
 
+const MapPage = ({ fetchCard, token }) => {
+  useEffect(() => {
+    fetchCard(token)
+  }, [])
 
-const MapPage = ({ fetchAddressList }) => {
   return (
     <>
       <Map/>
-      <OrderAddress/>
+      <OrderForm/>
     </>
   )
 }
 
+const mapStateToProps = ({ SystemData }) => {
+  return {
+    token: SystemData.tokenUser
+  }
+}
 
-export default MapPage
+const mapDispatchToProps = { fetchCard }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapPage)

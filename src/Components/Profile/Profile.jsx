@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useStyles } from './styles'
 import Input from '../Input'
@@ -10,10 +10,6 @@ const Profile = ({ changeCard, fetchCard, card }) => {
   const classes = useStyles()
 
   const [valueCard, setValueCard] = useState({})
-
-  useEffect(() => {
-    fetchCard()
-  }, [])
 
   const generateInputs = (arr) => {
     return arr.map((el, i) => {
