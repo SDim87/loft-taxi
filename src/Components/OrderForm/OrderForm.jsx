@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Grid, Paper, FormControl, Select, MenuItem, InputLabel, Button
+  Grid, Paper, FormControl, Select, MenuItem, InputLabel
 } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchRoute, fetchAddressList } from '../../Redux/Actions/Actions'
+import Button from '../Button'
 import useStyles from './styles'
 
 const OrderForm = ({
-  addressList,
-  fetchRoute,
-  fetchAddressList,
-  cardName
+  addressList, fetchRoute, fetchAddressList, cardName
 }) => {
   const classes = useStyles()
   const [from, setFrom] = useState('')
@@ -106,7 +104,18 @@ const OrderForm = ({
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button
+            <div className={classes.btnWrap}>
+              <Button
+                style={'brand'}
+                width={'100%'}
+                handlerClick={onClickGetRoute}
+                disabled={isDisabled}
+            >
+                Вызвать такси
+              </Button>
+
+            </div>
+            {/* <Button
               className={classes.btn}
               type="submit"
               variant="contained"
@@ -116,7 +125,7 @@ const OrderForm = ({
               data-testid="btn"
             >
               Вызвать такси
-            </Button>
+            </Button> */}
           </Grid>
         </Grid>
       ) : (

@@ -13,8 +13,7 @@ export default makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: '97%',
   },
-  btn: {
+  btnWrap: {
     marginTop: '30px',
-    width: '100%',
   },
 }))

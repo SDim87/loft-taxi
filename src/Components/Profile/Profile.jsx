@@ -19,6 +19,7 @@ const Profile = ({ changeCard, fetchCard, card }) => {
           testId={el.testId}
           type={el.type}
           name={el.name}
+          placeholder={el.placeholder}
           label={el.label}
           valueInput={valueCard}
           setValueInput={setValueCard}
@@ -58,7 +59,7 @@ const Profile = ({ changeCard, fetchCard, card }) => {
 }
 const mapStateToProps = ({ SystemData }) => {
   return {
-    card: SystemData.card
+    card: SystemData.card,
   }
 }
 

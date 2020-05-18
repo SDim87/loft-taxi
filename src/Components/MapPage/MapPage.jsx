@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 import Map from '../Map'
 import OrderForm from '../OrderForm'
 import { fetchCard } from '../../Redux/Actions/Actions'
+import { useStyles } from './styles'
 
 const MapPage = ({ fetchCard, token }) => {
+  const classes = useStyles()
+
   useEffect(() => {
     fetchCard(token)
   }, [])
@@ -12,7 +15,9 @@ const MapPage = ({ fetchCard, token }) => {
   return (
     <>
       <Map/>
-      <OrderForm/>
+      <div className={classes.container}>
+        <OrderForm/>
+      </div>
     </>
   )
 }

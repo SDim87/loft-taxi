@@ -4,7 +4,15 @@ import { useStyles } from './styles'
 const Input = (props) => {
   const classes = useStyles()
   const {
-    type, name, label, testId, required, valueInput, setValueInput
+    type,
+    name,
+    label,
+    testId,
+    placeholder,
+    required,
+    valueInput,
+    setValueInput,
+
   } = props
 
   return (
@@ -17,6 +25,7 @@ const Input = (props) => {
         className={classes.input}
         type={type}
         name={name}
+        placeholder={placeholder}
         id={name}
         required={required}
         autoComplete={'off'}
