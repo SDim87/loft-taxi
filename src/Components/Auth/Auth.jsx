@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { useStyles } from './styles'
 import logo from '../../assets/img/logo.png'
@@ -8,6 +7,7 @@ import Registration from '../Registration'
 
 const Auth = ({ isActiveForm }) => {
   const classes = useStyles()
+
 
   return (
     <>
@@ -19,10 +19,6 @@ const Auth = ({ isActiveForm }) => {
   )
 }
 
-// Auth.propTypes = {
-//   setActiveComponent: PropTypes.func,
-//   setActiveMap: PropTypes.func,
-// }
 const mapStateToProps = ({ SystemData }) => {
   return {
     isActiveForm: SystemData.isActiveForm

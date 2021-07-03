@@ -6,8 +6,9 @@ import {
   fetchToken,
   loginData,
   logout,
-  changeCardData,
-  fetchCardData
+  changeCardSuccess,
+  changeCardError,
+  fetchCardSuccess
 } from '../Actions/Actions'
 
 const initialState = {
@@ -48,12 +49,17 @@ export const SystemData = (state = initialState, action) => {
       }
     case logout.toString():
       return state = initialState
-    case changeCardData.toString():
+    case changeCardSuccess.toString():
       return state = {
         ...state,
         cardData: { ...action.payload }
       }
-    case fetchCardData.toString():
+    case changeCardError.toString():
+      return state = {
+        ...state,
+        cardData: action.payload
+      }
+    case fetchCardSuccess.toString():
       return state = {
         ...state,
         card: action.payload

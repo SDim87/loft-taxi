@@ -15,7 +15,7 @@ export const useStyles = createUseStyles({
     outline: 'none',
 
     '&::placeholder': {
-      color: `${colors.base3}`
+      color: `${colors.base9}`
     },
     '&:focus': {
       borderBottom: `2px solid ${colors.blue}`,

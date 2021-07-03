@@ -1,57 +1,33 @@
-import React, { Component } from 'react'
-import mapboxgl from 'mapbox-gl'
-// import Header from '../Header'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import Map from '../Map'
+import OrderForm from '../OrderForm'
+import { fetchCard } from '../../Redux/Actions/Actions'
+import { useStyles } from './styles'
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZG1pdHJpeS1seW5rYWdlIiwiYSI6ImNrOHpoOXRiajBycG0zZXRhZ256aTUxaG8ifQ.kd3Zw0dq9lwmO03qe9y1ew'
+const MapPage = ({ fetchCard, token }) => {
+  const classes = useStyles()
 
-class MapPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      lng: 44.9877,
-      lat: 53.1923,
-      zoom: 10.25,
-    }
-  }
+  useEffect(() => {
+    fetchCard(token)
+  }, [])
 
-  componentDidMount() {
-    // eslint-disable-next-line no-unused-vars
-    const map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
-    })
-  }
+  return (
+    <>
+      <Map/>
+      <div className={classes.container}>
+        <OrderForm/>
+      </div>
+    </>
+  )
+}
 
-  render() {
-    return (
-      <>
-        {/* <Header/> */}
-        <div
-          className="map"
-          style={{
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: '#eee',
-            position: 'relative',
-          }}
-          >
-          <div
-            className="mapContainer"
-            ref={(el) => (this.mapContainer = el)}
-            style={{
-              position: 'absolute',
-              top: '60px',
-              right: 0,
-              left: 0,
-              bottom: 0,
-            }}
-          ></div>
-        </div>
-      </>
-    )
+const mapStateToProps = ({ SystemData }) => {
+  return {
+    token: SystemData.tokenUser
   }
 }
 
-export default MapPage
+const mapDispatchToProps = { fetchCard }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapPage)

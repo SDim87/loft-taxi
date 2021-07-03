@@ -17,8 +17,13 @@ export const colors = {
   base7: '#f2f2f2',
   /** eaeaea */
   base8: '#eaeaea',
+  /** e0e0e0 */
+  base9: '#e0e0e0',
   /** 1473e6 */
   blue: '#1473e6',
   /** ffc617 */
   yellow: '#ffc617',
+  /** fdda1c */
+  yellowHover: '#fdda1c',
+  textDisabled: 'rgba(0, 0, 0, .3)',
 }

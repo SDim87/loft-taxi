@@ -1,6 +1,7 @@
 import { createUseStyles } from 'react-jss'
 import { colors } from '../../styles/colors'
 
+
 export const useStyles = createUseStyles({
   button: {
     display: 'inline-block',
@@ -19,8 +20,14 @@ export const useStyles = createUseStyles({
     transition: 'all 0.2s ease-in-out',
     cursor: 'pointer',
 
+    '&:disabled': {
+      pointerEvents: 'none',
+      backgroundColor: colors.base9,
+      color: colors.textDisabled
+    },
+
     '&:hover': {
-      backgroundColor: (props) => (props.style === 'brand' ? `${colors.base4}` : `${colors.base7}`)
-    }
-  }
+      backgroundColor: (props) => (props.style === 'brand' ? `${colors.yellowHover}` : `${colors.base7}`)
+    },
+  },
 })
